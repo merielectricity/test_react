@@ -8,14 +8,9 @@ const Header = () => {
     return (
         <div>
             <Link to="/">Home</Link>
-            <span> | </span>
-            {user ? (
-                <span onClick={logoutUser}>Logout</span>
-            ) : (
-                <Link to="/login" >Login</Link>
-            )}
-            {user && <p>Hello {user.username}!</p>}
-            
+            <span> | </span>            
+                <span onClick={logoutUser}>Logout</span>            
+                <Link to="/login" >Login</Link>            
         </div>
     )
 }
