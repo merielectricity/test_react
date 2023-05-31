@@ -1,9 +1,7 @@
 import React, {useState,useContext} from 'react'
-import AuthContext from '../context/AuthContext'
 import axiosInstance from '../api'
+import TokenService from '../service/TokenService';
 const LoginPage = () => {
-
-    let {loginUser} = useContext(AuthContext)
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async (event) => {
@@ -24,7 +22,7 @@ const LoginPage = () => {
     
           // Process the API response
           if ((response.status === 200) && response.data) {
-            loginUser(response.data)
+               TokenService.setToken(response.data)
           } else {
             // API request failed
             console.log('API request failed');

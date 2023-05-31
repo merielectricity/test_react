@@ -1,15 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import AuthContext from '../context/AuthContext'
+import TokenService from '../service/TokenService'
 
 const Header = () => {
-    let { user, logoutUser } = useContext(AuthContext)
-
+    const logoutUser = () => { TokenService.clearToken()}
     return (
         <div>
             <Link to="/">Home</Link>
             <span> | </span>            
-                <span onClick={logoutUser}>Logout</span>            
+                <button onClick={logoutUser} type='submit'>Logout</button>            
                 <Link to="/login" >Login</Link>            
         </div>
     )

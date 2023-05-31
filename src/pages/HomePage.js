@@ -5,32 +5,17 @@ import axiosInstance from '../api';
 const HomePage = () => {
     // const { authTokens, logoutUser } = useContext(AuthContext);
     let [profile, setProfile] = useState([])
-
-    // useEffect(() => {
-    //     getProfile()
-    // },[])
-
+    
     const getProfile =  async (event) => {
         event.preventDefault();
-        // let response = await fetch('/api/login/', {
-        // method: 'GET',
-        // headers:{
-        //     'Content-Type': 'application/json',
-        //     'Authorization':'Bearer ' + String(authTokens.access)
-        // }
-        // })
-
-        let response = await axiosInstance.get("login/");
-
-        // let data = await response.json()
-        // console.log(data)
-        if(response.status === 200){
-            setProfile(response.data)
-        } 
-        
-        // else if(response.statusText === 'Unauthorized'){
-        //     logoutUser()
-        // }
+        try{
+          let response = await axiosInstance.get("login/");
+          if(response.status === 200){
+              setProfile(response.data)
+          }}
+          catch (error) {
+            console.log("Unable to get profile");
+          }  
     }
 
     return (
